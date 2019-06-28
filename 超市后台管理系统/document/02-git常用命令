@@ -1,0 +1,13 @@
+git clone 仓库地址      // 第一次从服务器下载代码
+git add .               // 纳入版本控制
+git commit -m"描述信息"  // 纳入本地仓库
+git push origin master  // 推送到远程仓库 
+
+git pull 仓库地址        // 第二次以后 从服务器下载代码
+
+git status              // 查看仓库的状态
+
+
+配置用户名和邮箱：
+    git config --global user.name "用户名"
+    git config –-global user.email "邮箱"

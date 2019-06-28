@@ -1,0 +1,118 @@
+项目目标 和 分组
+    1 项目目标
+        1）熟练掌握 vue 组件化开发方式 （*****）
+        2）熟练掌握 element-ui 的使用（*****）
+        3）熟练掌握 vue-router 的使用（*****）
+        4）熟练使用 axios 和后端进行数据交互（*****）
+        5）能实现对 axios 进行企业级 封装（*****）
+        6）掌握 echarts 的简单使用
+        7）掌握 头像 上传的前端部分。
+
+        6）熟悉后端完整的crud交互流程 （***）
+        7）理解权限设置的过程中，前端应该做什么。
+        7）了解整个系统运行的前后端所有逻辑和原理。
+
+
+    2 分组实现 （版本控制使用 git 且 使用命令行）
+        组员：     小红 & 小绿
+        仓库地址： https://github.com/sineLT/superMarket.git
+
+DAY01:
+    1 创建项目工程目录
+        // 方式一
+            1) 创建目录
+                vue create superMarket
+
+            2) 进入项目 & 启动项目
+                npm run serve
+
+        // 方式二
+            1）复制一份项目目录&进入项目安装依赖
+                cnpm i 
+
+            2) 启动项目
+                npm run serve
+
+    2 项目集成element-ui
+        1) 安装
+            cnpm i element-ui --save
+
+        2) 在入口文件 main.js 引入 
+            import ElementUI from 'element-ui'; // JS组件
+            import 'element-ui/lib/theme-chalk/index.css'; // CSS样式
+
+        3) 注册
+            Vue.use(ElementUI);
+
+    3 项目的工程目录分配
+        assets       // 静态资源
+        components   // 组件（公用小组件）
+        views        // 页面级别组件
+        utils        // 工具函数
+        api          // 处理接口相关的js文件
+
+        App.vue      // 顶级组件
+        main.js      // 入口文件
+        router.js    // 路由
+
+    4 路由分配
+        routes: [
+            // 登录
+            {
+                path: '/login', // 路径
+                component: () => import('./views/Login/Login.vue') // 组件
+            },
+            // 后台主界面
+            {
+                path: '/home',
+                component: () => import('./views/Home/Home.vue'),
+                children: [
+                    // 系统信息
+                    {
+                        path: '/home/systeminfo',
+                        component: () => import('./views/SystemInfo/SystemInfo.vue'),
+                    },
+                    // 账号添加
+                    {
+                        path: '/home/accountadd',
+                        component: () => import('./views/AccountAdd/AccountAdd.vue'),
+                    },
+                    // 账号管理
+                    {
+                        path: '/home/accountmanage',
+                        component: () => import('./views/AccountManage/AccountManage.vue'),
+                    }
+                ]
+            }
+        ]
+    5 重置样式 base.css的抽取
+        1） 在assets里面写 base.css
+        2)  在入口文件 main.js 中引入
+            import './assets/css/base.css'
+
+    6 登录组件实现
+        1) 复制 =》 粘贴 =》 修改
+        2）表单验证
+            a) 内置自带的验证
+                // 非空 （requited:true 必填    message: 写提示信息   trigger: 写触发方式）
+                { required: true, message: '提示信息', trigger: 'blur' },
+
+                // 长度 （min: 最小长度 max: 最大长度  message: 提示信息  trigger: 触发方式）
+                { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+
+            b) 自定义验证
+                { required: true, validator: validator, trigger: 触发方式 }
+
+                // 验证函数
+                const validator = (rule, value, callback) => {
+                    // rule 验证的规则对象
+                    // value  用户输入的值
+                    // callback 回调函数
+                }
+
+            c) 正则验证
+        3）路由跳转
+            this.$router.push('要跳转到的路由地址')
+
+    7 后台首页组件
+        1）左侧导航实现
